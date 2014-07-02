@@ -6,7 +6,7 @@ class Main
 
 	def Main.Hello()
 
-		print('hello', 1, 2, 3, "\n")
+		print('hello ruby world.', "\n")
 
 	end
 
