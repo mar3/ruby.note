@@ -8,17 +8,14 @@ module Main
 	def Main.main()
 
 		watch = Stopwatch.new
-		Logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		Logger.info("$$$ START");
-		Logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		Logger.info("### START ###");
 		sleep(3.234);
 		Logger.info("処理時間=[", watch.now, "]");
-		Logger.info("$$$ END $$$");
+		Logger.info("--- END ---");
 
 	end
 
 end
 
 Main.main();
-
 

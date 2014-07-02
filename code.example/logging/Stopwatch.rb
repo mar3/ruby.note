@@ -1,7 +1,5 @@
 #!/usr/bin/ruby
-#
-#
-#
+
 class Stopwatch
 
 	def initialize
