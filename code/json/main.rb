@@ -12,7 +12,25 @@ def main()
 		'住所' => '石川県野々市市末松1丁目A-B-C',
 	}
 
-	print(values.to_json, "\n")
+	#
+	# Ruby オブジェクトを表示
+	#
+
+	print(values, "\n")
+
+	#
+	# Ruby オブジェクトを JSON に変換
+	#
+
+	content = values.to_json
+	print(content, "\n")
+
+	#
+	# JSON 文字列を Ruby オブジェクトに変換
+	#
+
+	values = JSON.parse(content)
+	print(values, "\n")
 
 end
 
