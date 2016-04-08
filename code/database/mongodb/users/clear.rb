@@ -11,10 +11,7 @@ def Main()
 	Mongo::Logger.logger.level = ::Logger::INFO
 
 	client = Mongo::Client.new(
-		['127.0.0.1:27017'],
-		:database => 'test',
-		:wtimeout => 500
-	)
+		['127.0.0.1:27017'], :database => 'test')
 
 	collection = client['db20160325']
 
@@ -23,7 +20,7 @@ def Main()
 	# 特定の属性に一意インデックスを作成する
 	client['db20160325'].indexes.create_one({'USER_NAME' => 1}, :unique => true)
 
-	puts 'reset: Ok'
+	puts 'Ok.'
 
 end
 

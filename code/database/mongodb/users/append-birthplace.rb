@@ -21,10 +21,7 @@ def _main()
 	Mongo::Logger.logger.level = ::Logger::INFO
 
 	client = Mongo::Client.new(
-		['127.0.0.1:27017'],
-		:database => 'test',
-		:wtimeout => 500
-	)
+		['127.0.0.1:27017'], :database => 'test')
 
 	collection = client['db20160325']
 
