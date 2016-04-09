@@ -18,7 +18,7 @@ def Main()
 	collection.find({}).delete_many
 
 	# 特定の属性に一意インデックスを作成する
-	client['db20160325'].indexes.create_one({'USER_NAME' => 1}, :unique => true)
+	collection.indexes.create_one({'USER_NAME' => 1}, :unique => true)
 
 	puts 'Ok.'
 

@@ -18,7 +18,7 @@ def _main()
 	client = Mongo::Client.new(
 		['127.0.0.1:27017'], :database => 'test')
 	collection = client['db20160325']
-	insert = lambda { |user_name, birthplace| _insert(collection, user_name) }
+	insert = lambda { |user_name| _insert(collection, user_name) }
 	insert.call('岸部シロー')
 	insert.call('岸部一徳')
 	insert.call('沢田研二')
