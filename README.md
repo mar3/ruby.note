@@ -11,6 +11,7 @@ Problem is
 
 ```
 $ sudo gem install rails
+
 Building native extensions. This could take a while...
 ERROR:  Error installing rails:
         ERROR: Failed to build gem native extension.
@@ -41,6 +42,7 @@ Problem is
 
 ```
 $ sudo gem install rails
+
 Building native extensions. This could take a while...
 ERROR:  Error installing rails:
         ERROR: Failed to build gem native extension.
