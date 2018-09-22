@@ -89,6 +89,7 @@ Gem files will remain installed in /var/lib/gems/2.5.0/gems/nokogiri-1.8.4 for i
 Results logged to /var/lib/gems/2.5.0/extensions/x86_64-linux/2.5.0/nokogiri-1.8.4/gem_make.out
 ```
 
+Install compiler.
 
 ```
 sudo su - root
