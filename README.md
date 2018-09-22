@@ -1,8 +1,7 @@
 # Getting Started with Rails on Ubuntu 18 LTS
 
 ```
-sudo su - root
-gem install rails
+sudo gem install rails
 ```
 
 
@@ -11,7 +10,7 @@ gem install rails
 Problem is
 
 ```
-root@instance-1:~# gem install rails
+$ sudo gem install rails
 Building native extensions. This could take a while...
 ERROR:  Error installing rails:
         ERROR: Failed to build gem native extension.
@@ -41,7 +40,7 @@ sudo apt install ruby-dev
 Problem is
 
 ```
-root@instance-1:~# gem install rails
+$ sudo gem install rails
 Building native extensions. This could take a while...
 ERROR:  Error installing rails:
         ERROR: Failed to build gem native extension.
