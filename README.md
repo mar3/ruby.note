@@ -29,8 +29,7 @@ Results logged to /var/lib/gems/2.5.0/extensions/x86_64-linux/2.5.0/nokogiri-1.8
 Install ruby-dev.
 
 ```
-sudo su - root
-apr install ruby-dev
+sudo apt install ruby-dev
 ```
 
 
@@ -89,11 +88,12 @@ Gem files will remain installed in /var/lib/gems/2.5.0/gems/nokogiri-1.8.4 for i
 Results logged to /var/lib/gems/2.5.0/extensions/x86_64-linux/2.5.0/nokogiri-1.8.4/gem_make.out
 ```
 
-Install compiler.
+Install compiler and some libraries.
 
 ```
-sudo su - root
-apt install g++
+sudo apt install g++
+sudo apt install zlib1g-dev
+sudo apt install libxml2-dev
 ```
 
 
