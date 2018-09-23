@@ -18,6 +18,7 @@ def _main()
 	printer.call(1)
 	printer.call(2)
 	printer.call(3)
+	printer.call(["あいうえお", "らりるれろ"])
 	printer.call("Ok.")
 
 end
