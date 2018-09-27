@@ -5,8 +5,8 @@ def _main()
 
 	for i in 0..9
 
-		text = printf("%03d", Random.rand(1000))
-		puts text
+		value = Random.rand(1000)
+		printf("%03d\n", value)
 
 	end
 
