@@ -1,0 +1,5 @@
+settings:
+    database:
+        service_name: "service name"
+        user: "ruby"
+        password: "pa ss word"
