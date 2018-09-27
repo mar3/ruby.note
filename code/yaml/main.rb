@@ -5,13 +5,11 @@ require 'yaml'
 
 def _configure()
 
-	print("[info] $$$ _configure() $$$\n")
-
 	begin
 		conf = YAML.load_file("settings.yam")
 		return conf
 	rescue => e
-		print("[error] ", e, "\n")
+		print("[trace] ", e, "\n")
 		return nil
 	end
 
@@ -21,6 +19,7 @@ def _run()
 
 	conf = _configure()
 	if conf == nil then
+		print("[error] configuration failure.\n")
 		return
 	end
 
