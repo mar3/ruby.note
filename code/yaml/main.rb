@@ -6,7 +6,7 @@ require 'yaml'
 def _configure()
 
 	begin
-		conf = YAML.load_file("settings.yam")
+		conf = YAML.load_file("settings.yaml")
 		return conf
 	rescue => e
 		print("[trace] ", e, "\n")
