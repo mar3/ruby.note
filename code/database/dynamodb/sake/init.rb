@@ -14,8 +14,10 @@ class Application
 
 	def open()
 		if @dynamodb != nil
+			print("[TRACE] (connection found.)\n")
 			return @dynamodb
 		end
+		print("[TRACE] (a new connection created.)\n")
 		# ENV['AWS_REGION'] = 'local'
 		# region: ,
 		credentials = Aws::Credentials.new("", "")
@@ -26,24 +28,19 @@ class Application
 		return @dynamodb
 	end
 
-	def run()
-
-		print("[TRACE] ### start ###", "\n")
-
-		dynamodb = open()
-
+	def init()
 		# ========== creating a new table ==========
 		begin
-			print("# listing available operations...\n")
+			print("[TRACE] listing available operations...\n")
+			dynamodb = open()
 			print(dynamodb.operation_names, "\n")
 		rescue Exception => e
 			print("[TRACE] error: ", e, "\n")
 		end
-
+		print("\n")
 		# ========== creating a new table ==========
 		begin
-			print("\n")
-			print("# creating a new table...\n")
+			print("[TRACE] creating a new table...\n")
 			parameters = {
 				table_name: "sake_table",
 				key_schema: [
@@ -63,41 +60,50 @@ class Application
 					write_capacity_units: 1,
 				}
 			}
+			dynamodb = open()
 			response = dynamodb.create_table(parameters)
 			print("[TRACE] created: ", response, "\n")
 		rescue Exception => e
 			print("[TRACE] error: ", e, "\n")
 		end
+		print("\n")
+	end
 
+	def list_tables()
 		# ========== listing tables ==========
 		begin
-			print("\n")
-			print("# listing tables...\n")
+			print("[TRACE] listing tables...\n")
+			dynamodb = open()
 			tables = dynamodb.list_tables
 			print(tables, "\n")
-			print("\n")
 		rescue Exception => e
 			print("[TRACE] error: ", e, "\n")
 		end
+		print("\n")
+	end
 
-		# ========== droping table ==========
+	def drop_table()
+		# ========== deleting table ==========
 		begin
-			print("\n")
-			print("# deleting table...\n")
+			print("[TRACE] deleting table...\n")
 			parameters = {
 				table_name: "sake_table"
 			}
+			dynamodb = open()
 			response = dynamodb.delete_table(parameters)
 			print("[TRACE] delete: [", response, "]\n")
 		rescue Exception => e
 			print("[TRACE] error: ", e, "\n")
 		end
+		print("\n")
+	end
 
-		# ========== end ==========
-		# print("Ok.\n")
-
+	def run()
+		print("[TRACE] ### start ###", "\n")
+		init()
+		list_tables()
+		drop_table()
 		print("[TRACE] --- end ---", "\n")
-
 	end
 
 end
