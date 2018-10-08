@@ -109,10 +109,8 @@ class Application
 end
 
 def main()
-
 	app = Application.new()
 	app.run()
-
 end
 
 main()
