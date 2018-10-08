@@ -1,4 +1,4 @@
-# AWS in Ruby
+# DynamoDB with Ruby
 
 ```
 sudo gem install aws-sdk-core
