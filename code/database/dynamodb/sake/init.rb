@@ -158,9 +158,8 @@ class Application
 end
 
 def main()
-	# WIP
-	# app = Application.new()
-	# app.run()
+	app = Application.new()
+	app.run()
 end
 
 main()
