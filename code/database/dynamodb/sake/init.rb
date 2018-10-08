@@ -82,6 +82,16 @@ class Application
 		print("\n")
 	end
 
+	def create_records()
+		begin
+			# dynamodb = open()
+			# response = dynamodb.delete_table(parameters)
+		rescue Exception => e
+			print("[TRACE] error: ", e, "\n")
+		end
+		print("\n")
+	end
+
 	def drop_table()
 		# ========== deleting table ==========
 		begin
@@ -101,6 +111,7 @@ class Application
 	def run()
 		print("[TRACE] ### start ###", "\n")
 		init()
+		create_records()
 		list_tables()
 		drop_table()
 		print("[TRACE] --- end ---", "\n")
