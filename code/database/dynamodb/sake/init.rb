@@ -93,7 +93,7 @@ class Application
 		end
 	end
 
-	def create_records()
+	def create_items_bak()
 		begin
 			Logger.trace('$$$ creating items $$$')
 			dynamodb = open()
@@ -127,6 +127,30 @@ class Application
 		end
 	end
 
+	def create_items()
+		begin
+			Logger.trace('$$$ creating items $$$')
+			dynamodb = open()
+			new_id = Generator.new_id()
+			item = {
+				sake_id: new_id,
+				sake_name: "旭若松",
+				factory: {
+					name: "那賀酒造",
+					address: "徳島県 那賀郡 xxx..." 
+				}
+			}
+			parameters = {
+				table_name: "sake_table",
+				item: item
+			}
+			response = dynamodb.put_item(parameters)
+			Logger.trace('REGISTER: ', response)
+		rescue Exception => e
+			Logger.trace('error: ', e)
+		end
+	end
+
 	def drop_table()
 		# ========== deleting table ==========
 		begin
@@ -146,7 +170,7 @@ class Application
 		Logger.trace('### start ###')
 		begin
 			init()
-			create_records()
+			create_items()
 			list_tables()
 			drop_table()
 		rescue Exception => e
