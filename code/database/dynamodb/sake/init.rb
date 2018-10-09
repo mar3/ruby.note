@@ -28,7 +28,7 @@ class Application
 
 	def open()
 		if @dynamodb != nil
-			Logger.trace('(connection found.)')
+			# Logger.trace('(connection found.)')
 			return @dynamodb
 		end
 		Logger.trace('(a new connection created.)')
@@ -42,29 +42,38 @@ class Application
 		return @dynamodb
 	end
 
-	def init()
-		# ========== creating a new table ==========
+	def show_available_operations()
 		begin
 			Logger.trace('$$$ listing available operations $$$')
 			dynamodb = open()
-			Logger.trace(dynamodb.operation_names)
+			Logger.trace(dynamodb.operation_names, "\n")
 		rescue Exception => e
 			Logger.trace('error: ', e)
 		end
-		# ========== creating a new table ==========
+	end
+
+	def init()
 		begin
-			Logger.trace('creating a new table...')
+			Logger.trace('$$$ creating a new table $$$')
 			parameters = {
 				table_name: 'sake_table',
 				key_schema: [
 					{
 						attribute_name: 'sake_id',
 						key_type: 'HASH'
+					},
+					{
+						attribute_name: 'sake_name',
+						key_type: 'String'
 					}
 				],
 				attribute_definitions: [
 					{
 						attribute_name: 'sake_id',
+						attribute_type: 'S'
+					},
+					{
+						attribute_name: 'sake_name',
 						attribute_type: 'S'
 					}
 				],
@@ -75,53 +84,18 @@ class Application
 			}
 			dynamodb = open()
 			response = dynamodb.create_table(parameters)
-			Logger.trace('created: ', response)
+			Logger.trace('created: ', response, "\n")
 		rescue Exception => e
 			Logger.trace('error: ', e)
 		end
 	end
 
 	def list_tables()
-		# ========== listing tables ==========
 		begin
 			Logger.trace('$$$ listing tables $$$')
 			dynamodb = open()
 			tables = dynamodb.list_tables
-			Logger.trace(tables)
-		rescue Exception => e
-			Logger.trace('error: ', e)
-		end
-	end
-
-	def create_items_bak()
-		begin
-			Logger.trace('$$$ creating items $$$')
-			dynamodb = open()
-			new_id = Generator.new_id()
-			parameters = {
-				expression_attribute_names: {
-					"#SAKE_NAME" => "sake_name",
-					"#PREFECTURE" => "prefecture"
-				}, 
-				expression_attribute_values: {
-					":sake_name" => {
-						s: '旭若松'
-					},
-					":prefecture" => {
-						s: 'tokushima'
-					}
-				},
-				key: {
-					"sake_id" => {
-						s: new_id,
-					}
-				},
-				return_values: "ALL_NEW",
-				table_name: "sake_table",
-				update_expression: "SET #SAKE_NAME = :sake_name, #PREFECTURE = :prefecture"
-			}
-			response = dynamodb.update_item(parameters)
-			Logger.trace('REGISTER: ', response)
+			Logger.trace(tables, "\n")
 		rescue Exception => e
 			Logger.trace('error: ', e)
 		end
@@ -145,14 +119,40 @@ class Application
 				item: item
 			}
 			response = dynamodb.put_item(parameters)
-			Logger.trace('REGISTER: ', response)
+			Logger.trace('new item is: ', response, "\n")
+		rescue Exception => e
+			Logger.trace('error: ', e)
+		end
+	end
+
+	def search_items()
+		begin
+			Logger.trace('$$$ searching items $$$')
+			dynamodb = open()
+			parameters = {
+				table_name: "sake_table",
+				key_condition_expression: "#condition1 = :value1",
+				expression_attribute_names: {
+					"#condition1" => "sake_id"
+					# "#condition1" => "sake_name"
+				},
+				expression_attribute_values: {
+					":value1" => 'xxxxxxxx	' 
+				}
+			}
+			item_count = 0
+			response = dynamodb.query(parameters)
+			response.items.each do |e|
+				Logger.trace('    - ', e)
+				item_count = item_count + 1
+			end
+			Logger.trace(item_count, ' item(s) found.', "\n")
 		rescue Exception => e
 			Logger.trace('error: ', e)
 		end
 	end
 
 	def drop_table()
-		# ========== deleting table ==========
 		begin
 			Logger.trace('$$$ deleting table $$$')
 			parameters = {
@@ -167,16 +167,18 @@ class Application
 	end
 
 	def run()
-		Logger.trace('### start ###')
+		Logger.trace('### start ###', "\n")
 		begin
+			show_available_operations()
 			init()
-			create_items()
 			list_tables()
+			create_items()
+			search_items()
 			drop_table()
 		rescue Exception => e
 			Logger.trace('error: ', e)
 		end
-		Logger.trace('--- end ---')
+		Logger.trace('--- end ---', "\n")
 	end
 
 end
