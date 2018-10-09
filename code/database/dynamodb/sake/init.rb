@@ -4,6 +4,7 @@
 require 'aws-sdk-core'
 require 'aws-sdk-dynamodb'
 require 'securerandom'
+require 'pp'
 
 
 class Logger
@@ -52,7 +53,7 @@ class Application
 		end
 	end
 
-	def init()
+	def init_bak()
 		begin
 			Logger.trace('$$$ creating a new table $$$')
 			parameters = {
@@ -87,6 +88,45 @@ class Application
 			Logger.trace('created: ', response, "\n")
 		rescue Exception => e
 			Logger.trace('error: ', e)
+		end
+	end
+
+	def init()
+		begin
+			Logger.trace('$$$ creating a new table $$$')
+			parameters = {
+				table_name: 'sake_table',
+				key_schema: [
+					{attribute_name: 'sake_id', key_type: 'HASH'},
+					{attribute_name: 'sake_name', key_type: 'String'}
+				],
+				attribute_definitions: [
+					{attribute_name: 'sake_id', attribute_type: 'S'},
+					{attribute_name: 'sake_name', attribute_type: 'S'}
+				],
+				provisioned_throughput: {
+					read_capacity_units: 1, write_capacity_units: 1,
+				},
+				global_secondary_indexes: [
+					{
+						index_name: "sake_name_index",
+						key_schema: [
+							{attribute_name: "sake_name", key_type: "HASH"},
+						],
+						projection: {
+							"projection_type": "ALL"
+						},
+						provisioned_throughput: {
+							"read_capacity_units": 1, "write_capacity_units": 1
+						}
+					}
+				]
+			}
+			dynamodb = open()
+			response = dynamodb.create_table(parameters)
+			Logger.trace('created: ', "\n", PP.pp(response), "\n")
+		rescue Exception => e
+			Logger.trace('error: ', e, "\n")
 		end
 	end
 
@@ -131,13 +171,15 @@ class Application
 			dynamodb = open()
 			parameters = {
 				table_name: "sake_table",
-				key_condition_expression: "#condition1 = :value1",
-				expression_attribute_names: {
-					"#condition1" => "sake_id"
-					# "#condition1" => "sake_name"
-				},
+				index_name: "sake_name_index",
+				key_condition_expression: "sake_name = :value1",
+				# expression_attribute_names: {
+				# 	# "#condition1" => "sake_id"
+				# 	"#condition1" => "sake_name"
+				# },
 				expression_attribute_values: {
-					":value1" => 'xxxxxxxx	' 
+					":value1" => '旭若松' 
+					# ":value1" => {'S': '旭若松'} 
 				}
 			}
 			item_count = 0
@@ -148,7 +190,7 @@ class Application
 			end
 			Logger.trace(item_count, ' item(s) found.', "\n")
 		rescue Exception => e
-			Logger.trace('error: ', e)
+			Logger.trace('error: ', e, "\n")
 		end
 	end
 
