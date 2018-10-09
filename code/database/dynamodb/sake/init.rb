@@ -173,14 +173,7 @@ class Application
 				table_name: "sake_table",
 				index_name: "sake_name_index",
 				key_condition_expression: "sake_name = :value1",
-				# expression_attribute_names: {
-				# 	# "#condition1" => "sake_id"
-				# 	"#condition1" => "sake_name"
-				# },
-				expression_attribute_values: {
-					":value1" => '旭若松' 
-					# ":value1" => {'S': '旭若松'} 
-				}
+				expression_attribute_values: {":value1" => '旭若松'}
 			}
 			item_count = 0
 			response = dynamodb.query(parameters)
