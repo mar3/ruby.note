@@ -11,6 +11,7 @@ end
 def _enum_items()
 
 	items = [1, 'レレレ', '東京都千代田区大手町 1-1']
+	items.push('ジミ ヘンドリックス')
 	return items
 
 end
