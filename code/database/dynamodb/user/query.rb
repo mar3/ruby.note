@@ -44,7 +44,6 @@ class Users
 			key_condition_expression: 'prefecture = :value1',
 			expression_attribute_values: {':value1' => prefecture}
 		}
-		item_count = 0
 		response = db.query(parameters)
 		return response.items
 	end
@@ -56,10 +55,18 @@ class Stopwatch
 	def initialize()
 		@time = Time.now()
 	end
+
 	def to_s()
 		current = Time.now()
 		elapsed = current - @time
-		return elapsed
+		millisec = elapsed * 1000
+		sec = millisec / 1000
+		millisec = millisec % 1000
+		min = sec / 60
+		sec = sec % 60
+		hour = min / 60
+		min = min % 60
+		return sprintf('%02d:%02d:%02d.%03d', hour, min, sec, millisec);
 	end
 
 end
@@ -67,20 +74,19 @@ end
 class Application
 
 	def test0()
+		Logger.trace('$$$ begin query $$$')
 		model = Users.new()
 		items = model.query_by_prefecture('長崎県')
-		item_count = 0
 		items.each do |e|
-			Logger.trace('    - ', e)
-			item_count = item_count + 1
+			Logger.trace('found: ', e)
 		end
-		Logger.trace(item_count, ' item(s) found.')
+		Logger.trace(items.count, ' item(s) found.')
 	end
 
 	def run()
 		s = Stopwatch.new()
 		test0()
-		print(s.to_s(), "\n")
+		Logger.trace('処理時間: ', s)
 	end
 
 end
