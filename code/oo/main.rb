@@ -4,7 +4,7 @@
 class Logger
 
 	def Logger.trace(*parameters)
-		print(Time.now().strftime('%Y-%m-%d %H:%M:%S.%L'), " [TRACE] ", *parameters, "\n")
+		print(Time.now().strftime('%Y-%m-%d %H:%M:%S.%L'), ' [TRACE] ', *parameters, "\n")
 	end
 
 end
@@ -64,7 +64,7 @@ end
 
 class Application
 
-	def run()
+	def run(request)
 		loader = Loader.new()
 		f = loader.load(nil)
 		f.invoke()
@@ -74,9 +74,9 @@ class Application
 
 end
 
-def main()
+def main(argv)
 	app = Application.new()
-	app.run()
+	app.run(argv[0])
 end
 
-main()
+main(ARGV)
