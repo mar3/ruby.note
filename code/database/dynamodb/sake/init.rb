@@ -52,29 +52,14 @@ class Application
 		parameters = {
 			table_name: 'sake_table',
 			key_schema: [
-				{
-					attribute_name: 'sake_id',
-					key_type: 'HASH'
-				},
-				{
-					attribute_name: 'sake_name',
-					key_type: 'String'
-				}
+				{attribute_name: 'sake_id', key_type: 'HASH'},
+				{attribute_name: 'sake_name', key_type: 'String'}
 			],
 			attribute_definitions: [
-				{
-					attribute_name: 'sake_id',
-					attribute_type: 'S'
-				},
-				{
-					attribute_name: 'sake_name',
-					attribute_type: 'S'
-				}
+				{attribute_name: 'sake_id', attribute_type: 'S'},
+				{attribute_name: 'sake_name', attribute_type: 'S'}
 			],
-			provisioned_throughput: {
-				read_capacity_units: 1,
-				write_capacity_units: 1,
-			}
+			provisioned_throughput: {read_capacity_units: 1, write_capacity_units: 1}
 		}
 		dynamodb = open()
 		response = dynamodb.create_table(parameters)
@@ -101,18 +86,10 @@ class Application
 				{
 					index_name: 'sake_name_index',
 					key_schema: [
-						{
-							attribute_name: 'sake_name',
-							key_type: 'HASH'
-						},
+						{attribute_name: 'sake_name', key_type: 'HASH'},
 					],
-					projection: {
-						projection_type: "ALL"
-					},
-					provisioned_throughput: {
-						read_capacity_units: 1,
-						write_capacity_units: 1
-					}
+					projection: {projection_type: "ALL"},
+					provisioned_throughput: {read_capacity_units: 1, write_capacity_units: 1}
 				}
 			]
 		}
