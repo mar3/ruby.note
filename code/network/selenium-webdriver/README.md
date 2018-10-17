@@ -1,10 +1,17 @@
-# selenium-webdriver の動作メモ (Ubuntu 18 LTS)
+# selenium-webdriver の動作メモ 
 
-# chromedriver を設置
+# chromedriver を設置 (Ubuntu 18 LTS, 2018-10-17)
 
 `chromedriver_linux64.zip` を持ってきて PATH の範囲に置く。
 
-# [TROUBLESHOOTING] タイムアウト
+# installing Google Chrome on (Ubuntu 18 LTS, 2018-10-17) 
+
+```
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg --install google-chrome-stable_current_amd64.deb
+```
+
+# [TROUBLESHOOTING] タイムアウト (Ubuntu 18 LTS, 2018-10-17)
 
 タイムアウトします。
 
@@ -59,12 +66,5 @@ nunuqn@instance-1:~/bin$ ldd chromedriver
 
 ```
 sudo apt install libgconf-2.4
-```
-
-# installing Google Chrome on Ubuntu 18 LTS
-
-```
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg --install google-chrome-stable_current_amd64.deb
 ```
 
