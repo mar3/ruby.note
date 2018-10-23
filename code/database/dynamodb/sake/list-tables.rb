@@ -28,7 +28,7 @@ class Application
 		dynamodb = open()
 		response = dynamodb.list_tables
 		response.table_names.each do |e|
-			print('    ', e, "\n")
+			print(e, "\n")
 		end
 
 	end
