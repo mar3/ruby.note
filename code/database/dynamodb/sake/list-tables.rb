@@ -25,7 +25,7 @@ class Application
 
 	def list_tables()
 
-		dynamodb = open()
+		dynamodb = self.open()
 		response = dynamodb.list_tables
 		response.table_names.each do |e|
 			print(e, "\n")
@@ -35,7 +35,7 @@ class Application
 
 	def run()
 
-		list_tables()
+		self.list_tables()
 
 	end
 
