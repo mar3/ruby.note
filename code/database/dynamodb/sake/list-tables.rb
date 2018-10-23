@@ -2,18 +2,6 @@
 # coding: utf-8
 
 require 'aws-sdk-dynamodb'
-require 'pp'
-
-
-class Logger
-
-	def Logger.trace(*parameters)
-
-		print(Time.now().strftime('%Y-%m-%d %H:%M:%S.%L'), ' [TRACE] ', *parameters, "\n")
-
-	end
-
-end
 
 class Application
 
@@ -29,7 +17,8 @@ class Application
 			return @dynamodb
 		end
 		credentials = Aws::Credentials.new('', '')
-		@dynamodb = Aws::DynamoDB::Client.new(region: 'local', endpoint: 'http://localhost:8000', credentials: credentials)
+		@dynamodb = Aws::DynamoDB::Client.new(
+			region: 'local', endpoint: 'http://localhost:8000', credentials: credentials)
 		return @dynamodb
 
 	end
