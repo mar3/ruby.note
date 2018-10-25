@@ -50,7 +50,7 @@ class Application
 		}
 		parameters = {table_name: 'sake_table', item: item}
 		response = db.put_item(parameters)
-		Logger.trace('new item is: ', response, "\n")
+		# Logger.trace('new item is: ', response, "\n")
 	end
 
 	def test0()
