@@ -4,6 +4,20 @@
 sudo gem install rails
 ```
 
+# start project
+
+```
+rails new APPLICATION_NAME
+```
+
+# Installing yarn on Ubuntu 18 (2018-11-23)
+
+```
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update
+sudo apt install yarn
+```
 
 # ERROR: Failed to build gem native extension. (can't find header files for ruby at /usr/lib/ruby/include/ruby.h)
 
