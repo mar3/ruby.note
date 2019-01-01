@@ -111,4 +111,9 @@ sudo apt install zlib1g-dev
 sudo apt install libxml2-dev
 ```
 
+# CLI with Ruby
+
+Thor を利用するのが多いらしい
+
+* https://medium.com/magnetis-backstage/how-to-write-your-first-cli-with-thor-9da6636bf744
 
