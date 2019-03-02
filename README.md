@@ -105,7 +105,7 @@ Results logged to /var/lib/gems/2.5.0/extensions/x86_64-linux/2.5.0/nokogiri-1.8
 
 Install compiler and some libraries.
 
-```
+```bash
 sudo apt install g++
 sudo apt install zlib1g-dev
 sudo apt install libxml2-dev
@@ -117,3 +117,39 @@ Thor を利用するのが多いらしい
 
 * https://medium.com/magnetis-backstage/how-to-write-your-first-cli-with-thor-9da6636bf744
 
+# Bundler is
+
+* Ruby の gem 管理ツール
+* Bundler 自信も gem である。
+
+```bash
+sudo gem install bundler
+bundler --version
+```
+
+# Initialize Ruby project (non-rails)
+
+* Creating an empty project. `bundle init` creates initial Gemfile.
+
+```bash
+mkdir PROJECT-DIRECTORY
+cd PROJECT-DIRECTORY
+bundle init
+```
+
+* Editing Gemfile
+* Starting
+
+```bash
+bundle install --path vendor/bundle
+```
+
+* Running in project environment
+
+```
+bundle exec ./main.rb
+```
+
+# rubocop is
+
+* 静的解析ツール(gem)
