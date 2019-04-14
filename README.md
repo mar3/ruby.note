@@ -153,3 +153,9 @@ bundle exec ./main.rb
 # rubocop is
 
 * 静的解析ツール(gem)
+
+# rbenv On Ubuntu 18 LTS (2019-04-06)
+
+* apt で入れると ruby のバージョンが古い×
+
+https://github.com/rbenv/rbenv#installation からインストールすること。
