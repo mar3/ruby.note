@@ -160,6 +160,22 @@ bundle exec ./main.rb
 
 https://github.com/rbenv/rbenv#installation からインストールすること。
 
+```
+git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
+mkdir -p ~/.rbenv/plugins
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+```
+
+Ruby をインストールする
+
+```
+rbenv install --list
+rbenv install 2.6.3
+rbenv local 2.6.3
+```
+
 # rbenv install しようとしても Ruby のバージョンが無い
 
 ```
