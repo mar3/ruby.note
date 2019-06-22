@@ -159,3 +159,19 @@ bundle exec ./main.rb
 * apt で入れると ruby のバージョンが古い×
 
 https://github.com/rbenv/rbenv#installation からインストールすること。
+
+# rbenv install しようとしても Ruby のバージョンが無い
+
+```
+ruby-build: definition not found: 2.6.2
+
+See all available versions with `rbenv install --list'.
+
+If the version you need is missing, try upgrading ruby-build.
+```
+
+↓ruby-build をアップグレードする
+
+```
+sudo apt upgrade ruby-build
+```
