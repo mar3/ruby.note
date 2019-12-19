@@ -13,6 +13,8 @@ def _main()
 	puts Time.now()
 	puts Time.now().to_s
 	puts Time.now().strftime('%Y-%m-%d %H:%M:%S.%L')
+	puts Time.now().strftime('%Y%m%d%H%M%S%L')
+	puts Time.now().strftime('%Y%m%d-%H%M%S')
 	puts Time.parse('2016-01-01 01:12:34.777').to_s
 	puts Time.parse('2016-02-29 01:12:34.777').to_s
 	puts Time.parse('2016-02-30 01:12:34.777').to_s
